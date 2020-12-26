@@ -36,7 +36,7 @@ abstract class AbstractTracker
      */
     public function __construct()
     {
-        $this->recipients = require_once config_path('recipients.php');
+        $this->recipients = require config_path('recipients.php');
         $this->guzzle     = new Client;
     }
 
