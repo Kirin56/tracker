@@ -31,7 +31,7 @@ class Google implements Mailer
      * @param string $password
      * @param string $encryption
      */
-    public function __construct(string $host, string $port, string $user, string $password, string $encryption = PHPMailer::ENCRYPTION_STARTTLS)
+    public function __construct(string $host, string $port, string $user, string $password, string $encryption = 'tls')
     {
         $this->mail = new PHPMailer(true);
 
