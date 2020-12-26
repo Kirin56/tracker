@@ -1,0 +1,26 @@
+{
+    "name": "kirin/ps5-track",
+    "type": "project",
+    "authors": [
+        {
+            "name": "kirin",
+            "email": "syfall6@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.2",
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App",
+            "Database\\": "Database",
+            "Log\\": "Log",
+            "Mailer\\": "Mailer",
+            "Tracker\\": "Tracker"
+        },
+        "files": [
+            "App/helpers.php"
+        ]
+    }
+}
