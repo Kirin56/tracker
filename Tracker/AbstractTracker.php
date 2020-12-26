@@ -122,7 +122,7 @@ abstract class AbstractTracker
                     echo "Mail to $email sent\n";
                     Logger::log("Mail successfully has been sent to $email", 'success');
                 } catch (Exception $e) {
-                    Logger::log("Error while sending email to $email", 'error');
+                    Logger::log("Error while sending email to $email: " . $e->getMessage(), 'error');
                 }
             }
         }
