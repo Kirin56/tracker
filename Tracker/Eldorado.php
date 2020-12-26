@@ -50,10 +50,10 @@ class Eldorado extends AbstractTracker implements Tracker
 
     /**
      * @param string $itemId
-     * @param int $uri
+     * @param string $uri
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function sendRequest(string $itemId, int $uri)
+    protected function sendRequest(string $itemId, string $uri)
     {
         $link = $this->generateApiRequestLink($itemId);
 
