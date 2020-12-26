@@ -29,8 +29,8 @@ class Mvideo extends AbstractTracker implements Tracker
     private $trackingPages = [
         'products/igrovaya-konsol-sony-playstation-5-40073270',
         'products/igrovaya-konsol-sony-playstation-5-digital-edition-40074203',
-//        'products/smartfon-huawei-p40-lite-e-nfc-midnight-black-art-l29n-30050496',
-//        'products/smartfon-huawei-p40-lite-e-nfc-midnight-black-art-l29n-30050496sss',
+        'products/smartfon-huawei-p40-lite-e-nfc-midnight-black-art-l29n-30050496',
+        'products/smartfon-huawei-p40-lite-e-nfc-midnight-black-art-l29n-30050496sss',
     ];
 
     /**
