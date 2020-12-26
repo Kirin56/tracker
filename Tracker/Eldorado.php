@@ -66,14 +66,14 @@ class Eldorado extends AbstractTracker implements Tracker
         $parsedResponse = $this->parseContent($res, true);
 
         if (count($parsedResponse) === 0) {
-            echo "Empty data while fetching data from URI $link";
+            echo "Empty data while fetching data from URI $link\n";
             Logger::log("Empty data while fetching data from URI $link", 'error', $link);
 
             return;
         }
 
         if (!array_key_exists('IsAvailable', $parsedResponse[0])) {
-            echo "Unexpected format data URI $link";
+            echo "Unexpected format data URI $link\n";
             Logger::log("Unexpected format data URI $link", 'error', $link);
 
             return;
