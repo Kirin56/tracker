@@ -43,7 +43,7 @@ class Google implements Mailer
         $this->mail->Username   = $user;
         $this->mail->Password   = $password;
         $this->mail->SMTPSecure = $encryption;
-        $this->mail->SMTPDebug  = SMTP::DEBUG_CONNECTION;
+        $this->mail->SMTPDebug  = SMTP::DEBUG_LOWLEVEL;
     }
 
     /**
