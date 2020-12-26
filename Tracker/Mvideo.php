@@ -39,23 +39,32 @@ class Mvideo extends AbstractTracker implements Tracker
     public function handle()
     {
         foreach ($this->trackingPages as $page) {
-            $curLink = rtrim(self::BASE_URL, '/') . '/' . $page;
+            $this->sendRequest($page);
+        }
+    }
+
+    /**
+     * @param string $page
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function sendRequest(string $page)
+    {
+        $curLink = rtrim(self::BASE_URL, '/') . '/' . $page;
 
 
-            $res = $this->trackResource($curLink);
+        $res = $this->trackResource($curLink);
 
-            if ($res === null) {
-                return;
-            }
+        if ($res === null) {
+            return;
+        }
 
-            $parsedResponse = $this->parseContent($res);
+        $parsedResponse = $this->parseContent($res);
 
-            if ($parsedResponse !== null && strpos($parsedResponse, 'Товар распродан') === false) {
-                echo "Goods has been found $curLink\n";
-                Logger::log("Goods has been found $curLink", 'success', $curLink);
+        if ($parsedResponse !== null && strpos($parsedResponse, 'Товар распродан') === false) {
+            echo "Goods has been found $curLink\n";
+            Logger::log("Goods has been found $curLink", 'success', $curLink);
 
-                $this->notifyRecipients($curLink);
-            }
+            $this->notifyRecipients($curLink);
         }
     }
 }

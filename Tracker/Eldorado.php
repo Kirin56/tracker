@@ -44,36 +44,46 @@ class Eldorado extends AbstractTracker implements Tracker
     public function handle()
     {
         foreach ($this->itemIds as $key => $value) {
-            $link = $this->generateApiRequestLink($key);
+            $this->sendRequest($key, $value);
+        }
+    }
 
-            $res = $this->trackResource($link);
+    /**
+     * @param string $itemId
+     * @param int $uri
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function sendRequest(string $itemId, int $uri)
+    {
+        $link = $this->generateApiRequestLink($itemId);
 
-            if ($res === null) {
-                return;
-            }
+        $res = $this->trackResource($link);
 
-            $parsedResponse = $this->parseContent($res, true);
+        if ($res === null) {
+            return;
+        }
 
-            if (count($parsedResponse) === 0) {
-                echo "Empty data while fetching data from URI $link";
-                Logger::log("Empty data while fetching data from URI $link", 'error', $link);
+        $parsedResponse = $this->parseContent($res, true);
 
-                return;
-            }
+        if (count($parsedResponse) === 0) {
+            echo "Empty data while fetching data from URI $link";
+            Logger::log("Empty data while fetching data from URI $link", 'error', $link);
 
-            if (!array_key_exists('IsAvailable', $parsedResponse[0])) {
-                echo "Unexpected format data URI $link";
-                Logger::log("Unexpected format data URI $link", 'error', $link);
+            return;
+        }
 
-                return;
-            }
+        if (!array_key_exists('IsAvailable', $parsedResponse[0])) {
+            echo "Unexpected format data URI $link";
+            Logger::log("Unexpected format data URI $link", 'error', $link);
 
-            if ($parsedResponse[0]['IsAvailable'] === true) {
-                echo "Goods has been found $value\n";
-                Logger::log("Goods has been found $value", 'success', $value);
+            return;
+        }
 
-                $this->notifyRecipients($value);
-            }
+        if ($parsedResponse[0]['IsAvailable'] === true) {
+            echo "Goods has been found $uri\n";
+            Logger::log("Goods has been found $uri", 'success', $uri);
+
+            $this->notifyRecipients($uri);
         }
     }
 
