@@ -11,6 +11,7 @@ namespace Mailer;
 
 use Mailer\Interfaces\Mailer;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 /**
  * Class Google
@@ -42,6 +43,7 @@ class Google implements Mailer
         $this->mail->Username   = $user;
         $this->mail->Password   = $password;
         $this->mail->SMTPSecure = $encryption;
+        $this->mail->SMTPDebug  = SMTP::DEBUG_CONNECTION;
     }
 
     /**
