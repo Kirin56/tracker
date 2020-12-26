@@ -42,9 +42,15 @@ class Mvideo extends AbstractTracker implements Tracker
             $curLink = rtrim(self::BASE_URL, '/') . '/' . $page;
 
 
-            $res = $this->parseContent($this->trackResource($curLink));
+            $res = $this->trackResource($curLink);
 
-            if ($res !== null && strpos($res, 'Товар распродан') === false) {
+            if ($res === null) {
+                return;
+            }
+
+            $parsedResponse = $this->parseContent($res);
+
+            if ($parsedResponse !== null && strpos($parsedResponse, 'Товар распродан') === false) {
                 echo "Goods has been found $curLink\n";
                 Logger::log("Goods has been found $curLink", 'success', $curLink);
 

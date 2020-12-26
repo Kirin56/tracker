@@ -46,23 +46,29 @@ class Eldorado extends AbstractTracker implements Tracker
         foreach ($this->itemIds as $key => $value) {
             $link = $this->generateApiRequestLink($key);
 
-            $res = $this->parseContent($this->trackResource($link), true);
+            $res = $this->trackResource($link);
 
-            if (count($res) === 0) {
+            if ($res === null) {
+                return;
+            }
+
+            $parsedResponse = $this->parseContent($res, true);
+
+            if (count($parsedResponse) === 0) {
                 echo "Empty data while fetching data from URI $link";
                 Logger::log("Empty data while fetching data from URI $link", 'error', $link);
 
                 return;
             }
 
-            if (!array_key_exists('IsAvailable', $res[0])) {
+            if (!array_key_exists('IsAvailable', $parsedResponse[0])) {
                 echo "Unexpected format data URI $link";
                 Logger::log("Unexpected format data URI $link", 'error', $link);
 
                 return;
             }
 
-            if ($res[0]['IsAvailable'] === true) {
+            if ($parsedResponse[0]['IsAvailable'] === true) {
                 echo "Goods has been found $value\n";
                 Logger::log("Goods has been found $value", 'success', $value);
 
