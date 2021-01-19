@@ -8,5 +8,5 @@
 
 return [
     'syfall6@gmail.com',
-//    'newage17@yandex.ru'
+    'newage17@yandex.ru'
 ];
