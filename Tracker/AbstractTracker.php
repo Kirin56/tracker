@@ -119,7 +119,7 @@ abstract class AbstractTracker
 
                     $mailer->send($email, $this->createMessage($link), 'New shipment!');
 
-                    echo "Mail to $email sent\n";
+                    echo "Mail to $email was sent\n";
                     Logger::log("Mail successfully has been sent to $email", 'success');
                 } catch (Exception $e) {
                     Logger::log("Error while sending email to $email: " . $e->getMessage(), 'error');
@@ -130,11 +130,37 @@ abstract class AbstractTracker
 
     /**
      * @param string $link
+     * @return void
+     * @throws \Exception
+     */
+    protected function notifyRecipientsBlocking(string $link): void
+    {
+        $mailer = app('mailer');
+
+        foreach ($this->recipients as $email) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                try {
+                    echo "Sending email to $email (reason: blocking)...\n";
+
+                    $mailer->send($email, $this->createMessage($link, 'mail/blocking.html'), 'Resource was blocked!');
+
+                    echo "Mail to $email was sent\n";
+                    Logger::log("Mail successfully has been sent to $email (reason: blocking)", 'success');
+                } catch (Exception $e) {
+                    Logger::log("Error while sending email to $email: " . $e->getMessage(), 'error');
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $link
+     * @param string $template
      * @return string
      */
-    protected function createMessage(string $link): string
+    protected function createMessage(string $link, string $template = 'mail/main.html'): string
     {
-        $message = file_get_contents(template_path('mail/main.html'));
+        $message = file_get_contents(template_path($template));
 
         $message = str_replace('{{@date}}', date('d.m.Y H:i:s'), $message);
         $message = str_replace('{{@link}}', $link, $message);

@@ -55,12 +55,16 @@ class Mvideo extends AbstractTracker implements Tracker
         $res = $this->trackResource($curLink);
 
         if ($res === null) {
+            echo "They blocked the resource, perhaps, they have something to hide, check it!\n";
+
+            $this->notifyRecipientsBlocking($curLink);
+
             return;
         }
 
         $parsedResponse = $this->parseContent($res);
 
-        if ($parsedResponse !== null && strpos($parsedResponse, 'Товар распродан') === false) {
+        if ($parsedResponse !== null && strpos($parsedResponse, 'Скоро в продаже') === false) {
             echo "Goods has been found $curLink\n";
             Logger::log("Goods has been found $curLink", 'success', $curLink);
 
