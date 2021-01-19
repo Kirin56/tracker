@@ -34,7 +34,6 @@ class Eldorado extends AbstractTracker implements Tracker
     private $itemIds = [
         '71554192' => 'https://www.eldorado.ru/cat/detail/igrovaya-pristavka-playstation-5-digital-edition/',
         '71539984' => 'https://www.eldorado.ru/cat/detail/igrovaya-pristavka-sony-playstation-5/',
-        '71564562' => 'https://www.eldorado.ru/cat/detail/ultra-hd-4k-led-televizor-43-hi-vhix-43u169msa/',
         '11111111' => 'https://www.eldorado.ru/cat/detail/igrovaya-pristavka-sony-playstation-511/',
     ];
 
