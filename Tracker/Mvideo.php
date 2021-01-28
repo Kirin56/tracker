@@ -66,7 +66,7 @@ class Mvideo extends AbstractTracker implements Tracker
             echo "Goods has been found $curLink\n";
             Logger::log("Goods has been found $curLink", 'success', $curLink);
 
-            $this->notifyRecipients($curLink);
+            $this->notifyRecipients($curLink, 'New shipment MVideo!');
         }
     }
 }

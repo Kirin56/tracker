@@ -82,7 +82,7 @@ class Eldorado extends AbstractTracker implements Tracker
             echo "Goods has been found $uri\n";
             Logger::log("Goods has been found $uri", 'success', $uri);
 
-            $this->notifyRecipients($uri);
+            $this->notifyRecipients($uri, 'New shipment Eldorado!');
         }
     }
 

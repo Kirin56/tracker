@@ -105,10 +105,10 @@ abstract class AbstractTracker
 
     /**
      * @param string $link
-     * @return void
-     * @throws \Exception
+     * @param string $subject
+     * @throws Exception
      */
-    protected function notifyRecipients(string $link): void
+    protected function notifyRecipients(string $link, string $subject): void
     {
         $mailer = app('mailer');
 
@@ -117,7 +117,7 @@ abstract class AbstractTracker
                 try {
                     echo "Sending email to $email...\n";
 
-                    $mailer->send($email, $this->createMessage($link), 'New shipment!');
+                    $mailer->send($email, $this->createMessage($link), $subject);
 
                     echo "Mail to $email was sent\n";
                     Logger::log("Mail successfully has been sent to $email", 'success');
