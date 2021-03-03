@@ -8,6 +8,6 @@
 
 return [
 //    \Tracker\Mvideo::class,
-    \Tracker\Eldorado::class,
-    \Tracker\EldoradoHTML::class,
+//    \Tracker\Eldorado::class,
+//    \Tracker\EldoradoHTML::class,
 ];
