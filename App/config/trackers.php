@@ -7,6 +7,7 @@
  */
 
 return [
-    \Tracker\Mvideo::class,
+//    \Tracker\Mvideo::class,
     \Tracker\Eldorado::class,
+    \Tracker\EldoradoHTML::class,
 ];
